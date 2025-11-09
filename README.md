@@ -35,6 +35,7 @@ This project demonstrates a manual implementation of the **CQRS (Command Query R
 4.Create two separate SQL Server databases manually:
 
 MyApp_WriteDB → used for write operations (commands)
+
 MyApp_ReadDB → used for read operations (queries)
 
 5.In both databases, create the required User table using the following SQL script:
