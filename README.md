@@ -29,11 +29,16 @@ This project demonstrates a manual implementation of the **CQRS (Command Query R
    ```bash
    git clone https://github.com/DargahiLeila/AspNetCore-CQRS-WithMediatR
 2.Open the solution file (.sln) in Visual Studio 2022 or later.
+
 3.Make sure your SQL Server instance is running.
+
 4.Create two separate SQL Server databases manually:
+
 MyApp_WriteDB → used for write operations (commands)
 MyApp_ReadDB → used for read operations (queries)
+
 5.In both databases, create the required User table using the following SQL script:
+
 CREATE TABLE [dbo].[TBL_Users] (
     [Id] INT PRIMARY KEY IDENTITY(1,1),
     [Name] NVARCHAR(50),
@@ -48,7 +53,9 @@ CREATE TABLE [dbo].[TBL_Users] (
 
 ⚠️ Note: Replace Data Source, User Id, and Password with your own SQL Server credentials if different.
 
+
 7.Run the project:
 
 Press Ctrl + F5 or click Start Without Debugging
+
 The browser will open and load the home page
