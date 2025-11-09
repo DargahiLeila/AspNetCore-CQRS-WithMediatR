@@ -60,3 +60,35 @@ CREATE TABLE [dbo].[TBL_Users] (
 Press Ctrl + F5 or click Start Without Debugging
 
 The browser will open and load the home page
+
+
+🔄 Background Job: Sync Write → Read
+To support physical separation of read and write operations in the CQRS pattern, this project includes a background job that runs every 1 minute and synchronizes data between the two databases:
+
+Source: MyApp_WriteDB.dbo.TBL_Users
+
+Target: MyApp_ReadDB.dbo.TBL_Users
+
+The job performs a full refresh of the read-side table using the following SQL logic:
+
+SET NOCOUNT ON;
+
+BEGIN TRY
+    BEGIN TRAN;
+
+    TRUNCATE TABLE MyApp_ReadDB.dbo.TBL_Users;
+
+    INSERT INTO MyApp_ReadDB.dbo.TBL_Users (Id, Name, IsDeleted)
+    SELECT Id, Name, IsDeleted
+    FROM MyApp_WriteDB.dbo.TBL_Users;
+
+    COMMIT TRAN;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0 ROLLBACK TRAN;
+
+    DECLARE @Err NVARCHAR(4000) = ERROR_MESSAGE();
+    RAISERROR(N'Sync Users failed: %s', 16, 1, @Err);
+END CATCH;
+
+🛠️ You can schedule this job using SQL Server Agent or any external scheduler depending on your deployment environment.
