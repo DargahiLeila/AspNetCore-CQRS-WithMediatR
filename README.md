@@ -27,7 +27,7 @@ This project demonstrates a manual implementation of the **CQRS (Command Query R
 
 1. Clone the repository:
    ```bash
-  git clone https://github.com/DargahiLeila/AspNetCore-CQRS-WithMediatR.git
+git clone https://github.com/DargahiLeila/AspNetCore-CQRS-WithMediatR
 
 2.Open the solution file (.sln) in Visual Studio 2022 or later.
 3.Make sure your SQL Server instance is running.
