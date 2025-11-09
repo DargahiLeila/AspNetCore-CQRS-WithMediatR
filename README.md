@@ -42,11 +42,13 @@ CREATE TABLE [dbo].[TBL_Users] (
 );
 
 6.Update the connection strings in appsettings.json to match your SQL Server configuration. Example:
+
 "ReadConnectionString": "Data Source=YourServerName;Initial Catalog=MyApp_ReadDB;TrustServerCertificate=True;User Id=*;Password=*;",
+
 "WriteConnectionString": "Data Source=YourServerName;Initial Catalog=MyApp_WriteDB;TrustServerCertificate=True;User Id=*;Password=*;"
 
 ⚠️ Note: Replace Data Source, User Id, and Password with your own SQL Server credentials if different.
+
 7.Run the project:
 Press Ctrl + F5 or click Start Without Debugging
-
 The browser will open and load the home page
